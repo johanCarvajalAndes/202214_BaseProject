@@ -7,7 +7,6 @@ import {
   Param,
   Post,
   Put,
-  UseGuards,
 } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { ProductoDto } from './producto.dto';

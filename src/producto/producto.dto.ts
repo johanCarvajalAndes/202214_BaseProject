@@ -6,7 +6,7 @@ export class ProductoDto {
 
   @IsNumber()
   @IsNotEmpty()
-  readonly precio: string;
+  readonly precio: number;
 
   @IsString()
   @IsNotEmpty()
