@@ -43,7 +43,9 @@ export class TiendaService {
   }
 
   async update(id: string, tienda: TiendaEntity): Promise<TiendaEntity> {
-    const persistedtienda: TiendaEntity = await this.tiendaRepository.findOne({ where: { id } });
+    const persistedtienda: TiendaEntity = await this.tiendaRepository.findOne({
+      where: { id },
+    });
     if (!persistedtienda)
       throw new BusinessLogicException(
         'La tienda no se pudo encontrar',
