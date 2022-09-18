@@ -43,7 +43,7 @@ describe('ProductoService', () => {
     const producto: ProductoEntity = {
       id: '',
       nombre: faker.company.name(),
-      precio: faker.finance.amount(),
+      precio: 1000,
       tipo: 'Perecedero',
       tiendas: [],
     };
@@ -78,7 +78,7 @@ describe('ProductoService', () => {
   it('update deberia actualziar un producto', async () => {
     const producto: ProductoEntity = productoList[0];
     producto.nombre = 'New nombre';
-    producto.precio = 'LMO';
+    producto.precio = 2000;
 
     const updatedProducto: ProductoEntity = await service.update(
       producto.id,
@@ -99,7 +99,7 @@ describe('ProductoService', () => {
     producto = {
       ...producto,
       nombre: 'New nombre',
-      precio: 'TDO lll',
+      precio: 2000,
     };
     await expect(() => service.update('0', producto)).rejects.toHaveProperty(
       'message',

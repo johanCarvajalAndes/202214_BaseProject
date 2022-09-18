@@ -20,7 +20,10 @@ export class TiendaProductoService {
     tiendaId: string,
     productoId: string,
   ): Promise<TiendaEntity> {
-    const producto: ProductoEntity = await this.productoRepository.findOne({where: {id: productoId}, relations: ["tiendas"]});
+    const producto: ProductoEntity = await this.productoRepository.findOne({
+      where: { id: productoId },
+      relations: ['tiendas'],
+    });
     if (!producto)
       throw new BusinessLogicException(
         'El producto no existe',
