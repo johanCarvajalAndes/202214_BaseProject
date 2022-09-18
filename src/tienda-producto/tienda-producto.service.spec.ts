@@ -72,12 +72,12 @@ describe('TiendaProductoService', () => {
       direccion: faker.address.secondaryAddress(),
     });
 
-    const result: TiendaEntity = await service.addStoreToProduct(
+    const result: ProductoEntity = await service.addStoreToProduct(
       newTienda.id,
       newProducto.id,
     );
-    expect(result.productos.length).toBe(1);
-    expect(result.productos[0].id).toBe(newProducto.id);
+    expect(result.tiendas.length).toBe(1);
+    expect(result.tiendas[0].id).toBe(newTienda.id);
   });
   it('findStoreFromProduct una tienda por producto', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({
@@ -127,21 +127,15 @@ describe('TiendaProductoService', () => {
       direccion: faker.address.secondaryAddress(),
     });
 
-    const result: TiendaEntity = await service.addStoreToProduct(
-      newTienda.id,
-      newProducto.id,
-    );
-    const result2: TiendaEntity = await service.addStoreToProduct(
-      newTienda2.id,
-      newProducto.id,
-    );
+    await service.addStoreToProduct(newTienda.id, newProducto.id);
+    await service.addStoreToProduct(newTienda2.id, newProducto.id);
 
     const storedProducto: TiendaEntity[] = await service.findStoresFromProduct(
       newProducto.id,
     );
     expect(storedProducto.length).toBe(2);
-    expect(storedProducto[0].id).toBe(result.id || result2.id);
-    expect(storedProducto[1].id).toBe(result.id || result2.id);
+    expect(storedProducto[0].id).toBe(newTienda.id || newTienda2.id);
+    expect(storedProducto[1].id).toBe(newTienda.id || newTienda2.id);
   });
   it('deleteStoreFromProduct(productoId: string, tiendaId: string) borrar tiendas por producto', async () => {
     const newProducto: ProductoEntity = await productoRepository.save({

@@ -13,7 +13,7 @@ import { TiendaDto } from './tienda.dto';
 import { TiendaEntity } from './tienda.entity';
 import { TiendaService } from './tienda.service';
 
-@Controller('tienda')
+@Controller('stores')
 export class TiendaController {
   constructor(private readonly tiendaService: TiendaService) {}
   @Get()

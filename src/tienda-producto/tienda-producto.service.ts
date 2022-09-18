@@ -19,7 +19,7 @@ export class TiendaProductoService {
   async addStoreToProduct(
     tiendaId: string,
     productoId: string,
-  ): Promise<TiendaEntity> {
+  ): Promise<ProductoEntity> {
     const producto: ProductoEntity = await this.productoRepository.findOne({
       where: { id: productoId },
       relations: ['tiendas'],
