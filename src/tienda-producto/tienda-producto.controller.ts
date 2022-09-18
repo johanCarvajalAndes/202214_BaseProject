@@ -10,11 +10,11 @@ import {
 } from '@nestjs/common';
 import { TiendaProductoService } from './tienda-producto.service';
 
-@Controller('tienda-producto')
+@Controller('products')
 export class TiendaProductoController {
   constructor(private readonly tiendaProductoService: TiendaProductoService) {}
 
-  @Post('products/:producto_id/stores/:tienda_id')
+  @Post(':producto_id/stores/:tienda_id')
   async addStoreToProduct(
     @Param('producto_id') producto_id: string,
     @Param('tienda_id') tienda_id: string,
@@ -24,15 +24,15 @@ export class TiendaProductoController {
       producto_id,
     );
   }
-  @Get('all/:product_id')
+  @Get(':product_id/stores')
   async findStoresFromProduct(@Param('product_id') product_id: string) {
     return await this.tiendaProductoService.findStoresFromProduct(product_id);
   }
-  @Get('one/:product_id')
+  @Get(':product_id/store')
   async findStoreFromProduct(@Param('product_id') product_id: string) {
     return await this.tiendaProductoService.findStoreFromProduct(product_id);
   }
-  @Delete('products/:producto_id/stores/:tienda_id')
+  @Delete(':producto_id/store/:tienda_id')
   @HttpCode(204)
   async deleteStoreFromProduct(
     @Param('producto_id') producto_id: string,
@@ -44,7 +44,7 @@ export class TiendaProductoController {
     );
   }
 
-  @Put('products/:producto_id/newproduct/:newproduct_id')
+  @Put(':producto_id/newproduct/:newproduct_id')
   async updateStoresFromProduct(
     @Param('producto_id') producto_id: string,
     @Param('newproduct_id') newproduct_id: string,

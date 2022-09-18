@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "5e93c498-99a4-4bab-b186-48f3d06362d5",
+		"name": "S6 Tienda-Producto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1086579"
+	},
+	"item": [
+		{
+			"name": "crear relacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"prueba1\",\r\n    \"precio\":500,\r\n    \"tipo\":\"Perecedero\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto_id}}/stores/{{tienda_id}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear relacion Producto 2 Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"prueba1\",\r\n    \"precio\":500,\r\n    \"tipo\":\"Perecedero\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto2_id}}/stores/{{tienda_id}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto2_id}}",
+						"stores",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear relacion Invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"   pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"prueba1\",\r\n    \"precio\":500,\r\n    \"tipo\":\"dddd\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/products/0/stores/0",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"0",
+						"stores",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tiendas por producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Numeros de productos > ' + 0, function () {\r",
+							"   var data = pm.response.json()\r",
+							"   pm.expect(data.length).to.greaterThan(0)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto_id}}/stores",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"stores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tienda por producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto_id}}/store",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tienda por producto Invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"   pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/products/0/store",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"0",
+						"store"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar tiendas producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"prueba1\",\r\n    \"precio\":1000,\r\n    \"tipo\":\"Perecedero\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto_id}}/newproduct/{{producto2_id}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"newproduct",
+						"{{producto2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "actualizar producto Invalida",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"   pm.response.to.have.status(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"prueba1\",\r\n    \"precio\":500,\r\n    \"tipo\":\"Perecedero\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/products/0/newproduct/{{producto2_id}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"0",
+						"newproduct",
+						"{{producto2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrar relacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto_id}}/store/{{tienda_id}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"store",
+						"{{tienda_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "borrar relacion Invalidad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 500\", function () {\r",
+							"   pm.response.to.have.status(500);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/products/{{producto_id}}/store/0",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"products",
+						"{{producto_id}}",
+						"store",
+						"0"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
